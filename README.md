@@ -1,4 +1,4 @@
 dmk-twilio
 ========
 
-Java Spring framework wrapper for twilio [https://www.twilio.com/]
+Java Spring framework wrapper for Twilio https://www.twilio.com/
