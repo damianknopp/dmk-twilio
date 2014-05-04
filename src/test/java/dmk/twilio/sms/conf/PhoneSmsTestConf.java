@@ -54,7 +54,7 @@ public class PhoneSmsTestConf {
 	
 	@Bean
 	public PhoneSmsService phoneSmsService(){
-		PhoneSmsService service = new PhoneSmsServiceImpl();
+		PhoneSmsServiceImpl service = new PhoneSmsServiceImpl();
 		service.setSmsFactory(smsFactory());
 		return service;
 	}

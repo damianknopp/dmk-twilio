@@ -47,7 +47,6 @@ public class PhoneSmsServiceImpl implements PhoneSmsService{
 		}
 	}
 
-	@Override
 	public void setSmsFactory(SmsFactory factory) {
 		this.factory = factory;
 	}
