@@ -2,6 +2,7 @@ package dmk.twilio.sms;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class PhoneSmsServiceImpl implements PhoneSmsService{
 	}
 	
 	@Override
-	public Sms sendMessage(String to, String from, String body) {
+	public Optional<Sms> sendMessage(String to, String from, String body) {
 		if(factory == null){
 			throw new IllegalStateException("no SMS factory found! Cannot send any messages!");
 		}
@@ -35,16 +36,17 @@ public class PhoneSmsServiceImpl implements PhoneSmsService{
 		params.put("To", to);
 		params.put("From", from);
 		params.put("Body", body);
+		Sms message = null;
 		try{
-			Sms message = factory.create(params);
+			message = factory.create(params);
 			if(logger.isInfoEnabled()){
 				String price = message.getPrice();
 				logger.info("Sent message, cost: " + price);
 			}
-			return message;
 		}catch(TwilioRestException e){
 			throw new RuntimeException(e);
 		}
+		return Optional.of(message);
 	}
 
 	public void setSmsFactory(SmsFactory factory) {

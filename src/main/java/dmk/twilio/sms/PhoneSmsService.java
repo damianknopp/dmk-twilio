@@ -1,9 +1,11 @@
 package dmk.twilio.sms;
 
+import java.util.Optional;
+
 import com.twilio.sdk.resource.instance.Sms;
 
 
 public interface PhoneSmsService {
 
-	public Sms sendMessage(String to, String from, String body);
+	public Optional<Sms> sendMessage(String to, String from, String body);
 }

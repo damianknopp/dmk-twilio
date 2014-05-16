@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;
 
 import dmk.twilio.sms.PhoneSmsService;
@@ -14,13 +15,15 @@ import dmk.twilio.sms.TwilioRestClientProvider;
 import dmk.twilio.sms.TwilioRestClientProviderImpl;
 
 @Configuration
-public class TwilioSmsConf {
-	Logger logger = LoggerFactory.getLogger(TwilioSmsConf.class);
+public class TwilioConf {
+	Logger logger = LoggerFactory.getLogger(TwilioConf.class);
 	
 	@Autowired
 	protected String accountSid;
 	@Autowired
 	protected String authToken;
+	@Autowired
+	protected String fromPhoneNumber;
 	
 	@Bean
 	public PhoneSmsService phoneSmsService() {
@@ -34,6 +37,12 @@ public class TwilioSmsConf {
 		TwilioRestClientProvider provider = twilioRestClientProvider();
 		return provider.getSmsFactory();
 	}
+	
+	@Bean
+	public CallFactory callFactory() {
+		TwilioRestClientProvider provider = twilioRestClientProvider();
+		return provider.getCallFactory();
+	}
 
 	@Bean
 	public TwilioRestClientProvider twilioRestClientProvider() {
@@ -41,6 +50,7 @@ public class TwilioSmsConf {
 		TwilioRestClientProvider provider = new TwilioRestClientProviderImpl();
 		provider.setAccountSid(accountSid);
 		provider.setAuthToken(authToken);
+		provider.setPhoneNumber(fromPhoneNumber);
 		return provider;
 	}
 }

@@ -2,6 +2,10 @@ package dmk.twilio.sms;
 
 import static org.junit.Assert.fail;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.Optional;
 
 import org.junit.After;
@@ -14,17 +18,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.twilio.sdk.resource.instance.Sms;
+import com.twilio.sdk.resource.instance.Call;
 
 import dmk.twilio.sms.conf.TwilioTestConf;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=TwilioTestConf.class)
-public class PhoneSmsServiceImplTest {
+public class PhoneCallServiceImplTest {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	protected PhoneSmsService service;
+	protected PhoneCallService service;
 	@Autowired
 	protected String smsTo;
 	@Autowired
@@ -41,21 +45,27 @@ public class PhoneSmsServiceImplTest {
 	}
 	
 	@Test
-	public void sanity(){
+	public void sanity() throws MalformedURLException{
 		logger.debug("sanity test");
-		String body = "Test message.";
-		Optional<Sms> mesg = service.sendMessage(smsTo, fromPhoneNumber, body);
+		//local file paths do not work
+//		Path path = FileSystems.getDefault().getPath("src/test/resources/sample-call.xml");
+//		URL url = path.toUri().toURL();
+		
+		// only under twilio domain?
+		URL url = new URL("http://localhost:8080/nc/login/test/");
+		
+//		URL url = new URL("http://demo.twilio.com/welcome/voice/");
+		logger.debug("calling " + url.toString());
+		Optional<Call> mesg = service.makeCall(smsTo, fromPhoneNumber, url);
 
 		if(!mesg.isPresent()){
 			fail("mesg is null!");
 		}
-		Sms sms = mesg.get();
-		System.out.println("sent " + sms.getDateSent());
-		System.out.println("to " + sms.getTo());
-		System.out.println("price: " + sms.getPrice());
-		
-		logger.info("to = " + smsTo);
-		logger.info("from = " + fromPhoneNumber);
+		Call call = mesg.get();
+		logger.debug(call.getFrom());
+		logger.debug(call.getAnsweredBy());
+		logger.debug(call.getDuration());
+		logger.debug(call.getPrice());
 
 	}
 }

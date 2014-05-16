@@ -11,15 +11,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;
 
+import dmk.twilio.sms.PhoneCallService;
+import dmk.twilio.sms.PhoneCallServiceImpl;
 import dmk.twilio.sms.PhoneSmsService;
 import dmk.twilio.sms.PhoneSmsServiceImpl;
 import dmk.twilio.sms.TwilioRestClientProvider;
 import dmk.twilio.sms.TwilioRestClientProviderImpl;
 
 @Configuration
-public class PhoneSmsTestConf {
+public class TwilioTestConf {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	final static Resource[] locations = { 
@@ -48,7 +51,7 @@ public class PhoneSmsTestConf {
 	}
 	
 	@Bean
-	public String smsFrom(){
+	public String fromPhoneNumber(){
 		return this.from;
 	}
 	
@@ -58,19 +61,34 @@ public class PhoneSmsTestConf {
 		service.setSmsFactory(smsFactory());
 		return service;
 	}
+
+	@Bean
+	public PhoneCallService phoneCallService(){
+		PhoneCallServiceImpl service = new PhoneCallServiceImpl();
+		service.setCallFactory(callFactory());
+		return service;
+	}
+
 	
 	@Bean 
 	public SmsFactory smsFactory(){
 		TwilioRestClientProvider provider = twilioRestClientProvider();
 		return provider.getSmsFactory();
 	}
-	
+
+	@Bean 
+	public CallFactory callFactory(){
+		TwilioRestClientProvider provider = twilioRestClientProvider();
+		return provider.getCallFactory();
+	}
+
 	@Bean
 	public TwilioRestClientProvider twilioRestClientProvider(){
 		logger.info("accountSid " + accountSid);
 		TwilioRestClientProvider provider = new TwilioRestClientProviderImpl();
 		provider.setAccountSid(accountSid);
 		provider.setAuthToken(authToken);
+		provider.setPhoneNumber(from);
 		return provider;
 	}
 	
