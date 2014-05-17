@@ -46,7 +46,7 @@ public class PhoneSmsServiceImpl implements PhoneSmsService{
 		}catch(TwilioRestException e){
 			throw new RuntimeException(e);
 		}
-		return Optional.of(message);
+		return Optional.ofNullable(message);
 	}
 
 	public void setSmsFactory(SmsFactory factory) {

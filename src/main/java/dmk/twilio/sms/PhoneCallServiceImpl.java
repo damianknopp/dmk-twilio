@@ -42,7 +42,7 @@ public class PhoneCallServiceImpl implements PhoneCallService {
 		} catch (TwilioRestException e) {
 			throw new RuntimeException(e);
 		} 
-		return Optional.of(call);
+		return Optional.ofNullable(call);
 	}
 
 	public void setCallFactory(CallFactory factory) {

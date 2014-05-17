@@ -33,6 +33,8 @@ public class PhoneCallServiceImplTest {
 	protected String smsTo;
 	@Autowired
 	protected String fromPhoneNumber;
+	@Autowired
+	protected String voiceUrl;
 
 	@Before
 	public void before(){
@@ -52,10 +54,12 @@ public class PhoneCallServiceImplTest {
 //		URL url = path.toUri().toURL();
 		
 		// only under twilio domain?
-		URL url = new URL("http://localhost:8080/nc/login/test/");
+		URL url = new URL(voiceUrl);
 		
 //		URL url = new URL("http://demo.twilio.com/welcome/voice/");
-		logger.debug("calling " + url.toString());
+		logger.debug("saying " + url.toString());
+		logger.debug("to " + smsTo + " from " + fromPhoneNumber);
+
 		Optional<Call> mesg = service.makeCall(smsTo, fromPhoneNumber, url);
 
 		if(!mesg.isPresent()){

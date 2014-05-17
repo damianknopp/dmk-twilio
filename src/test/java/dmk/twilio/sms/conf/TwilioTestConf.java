@@ -43,7 +43,8 @@ public class TwilioTestConf {
 	protected String to;
 	@Value("${dmk.phone.twilio.sms.test.from}")
 	protected String from;
-	
+	@Value("${dmk.phone.twilio.test.voiceUrl}")
+	protected String voiceUrl;
 	
 	@Bean
 	public String smsTo(){
@@ -53,6 +54,11 @@ public class TwilioTestConf {
 	@Bean
 	public String fromPhoneNumber(){
 		return this.from;
+	}
+	
+	@Bean
+	public String voiceUrl(){
+		return this.voiceUrl;
 	}
 	
 	@Bean
