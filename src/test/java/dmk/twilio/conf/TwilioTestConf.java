@@ -1,4 +1,4 @@
-package dmk.twilio.sms.conf;
+package dmk.twilio.conf;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;

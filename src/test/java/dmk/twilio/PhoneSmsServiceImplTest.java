@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.twilio.sdk.resource.instance.Sms;
 
 import dmk.twilio.PhoneSmsService;
-import dmk.twilio.sms.conf.TwilioTestConf;
+import dmk.twilio.conf.TwilioTestConf;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=TwilioTestConf.class)
