@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;
 
+import dmk.twilio.PhoneCallService;
+import dmk.twilio.PhoneCallServiceImpl;
 import dmk.twilio.PhoneSmsService;
 import dmk.twilio.PhoneSmsServiceImpl;
 import dmk.twilio.TwilioRestClientProvider;
@@ -32,6 +34,13 @@ public class TwilioConf {
 		return service;
 	}
 
+	@Bean
+	public PhoneCallService phoneCallService() {
+		PhoneCallServiceImpl service = new PhoneCallServiceImpl();
+		service.setCallFactory(callFactory());
+		return service;
+	}
+	
 	@Bean
 	public SmsFactory smsFactory() {
 		TwilioRestClientProvider provider = twilioRestClientProvider();
