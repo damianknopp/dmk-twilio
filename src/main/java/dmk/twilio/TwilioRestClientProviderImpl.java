@@ -1,4 +1,4 @@
-package dmk.twilio.sms;
+package dmk.twilio;
 
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.factory.CallFactory;

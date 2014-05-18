@@ -1,4 +1,4 @@
-package dmk.twilio.sms;
+package dmk.twilio;
 
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;

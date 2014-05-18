@@ -1,4 +1,4 @@
-package dmk.twilio.sms.conf;
+package dmk.twilio.conf;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;
 
-import dmk.twilio.sms.PhoneSmsService;
-import dmk.twilio.sms.PhoneSmsServiceImpl;
-import dmk.twilio.sms.TwilioRestClientProvider;
-import dmk.twilio.sms.TwilioRestClientProviderImpl;
+import dmk.twilio.PhoneSmsService;
+import dmk.twilio.PhoneSmsServiceImpl;
+import dmk.twilio.TwilioRestClientProvider;
+import dmk.twilio.TwilioRestClientProviderImpl;
 
 @Configuration
 public class TwilioConf {

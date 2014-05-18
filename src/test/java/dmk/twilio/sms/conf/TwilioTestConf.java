@@ -14,12 +14,12 @@ import org.springframework.core.io.Resource;
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.factory.SmsFactory;
 
-import dmk.twilio.sms.PhoneCallService;
-import dmk.twilio.sms.PhoneCallServiceImpl;
-import dmk.twilio.sms.PhoneSmsService;
-import dmk.twilio.sms.PhoneSmsServiceImpl;
-import dmk.twilio.sms.TwilioRestClientProvider;
-import dmk.twilio.sms.TwilioRestClientProviderImpl;
+import dmk.twilio.PhoneCallService;
+import dmk.twilio.PhoneCallServiceImpl;
+import dmk.twilio.PhoneSmsService;
+import dmk.twilio.PhoneSmsServiceImpl;
+import dmk.twilio.TwilioRestClientProvider;
+import dmk.twilio.TwilioRestClientProviderImpl;
 
 @Configuration
 public class TwilioTestConf {

@@ -1,4 +1,4 @@
-package dmk.twilio.sms;
+package dmk.twilio;
 
 import static org.junit.Assert.fail;
 
@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.twilio.sdk.resource.instance.Sms;
 
+import dmk.twilio.PhoneSmsService;
 import dmk.twilio.sms.conf.TwilioTestConf;
 
 @RunWith(SpringJUnit4ClassRunner.class)

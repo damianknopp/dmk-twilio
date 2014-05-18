@@ -1,4 +1,4 @@
-package dmk.twilio.sms;
+package dmk.twilio;
 
 import java.util.Optional;
 
